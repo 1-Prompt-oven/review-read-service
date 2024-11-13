@@ -1,10 +1,9 @@
 package com.promptoven.reviewReadService.application.readService;
 
-import com.promptoven.reviewReadService.dto.out.ReviewResponseDto;
-import java.util.List;
+import com.promptoven.reviewReadService.dto.in.ReviewRequestDto;
+import com.promptoven.reviewReadService.dto.out.ReviewOutPaginationDto;
 
 public interface ReviewReadService {
 
-    void testRequest();
-    List<ReviewResponseDto> getReviews(String productUuid);
+    ReviewOutPaginationDto getReviews(ReviewRequestDto reviewRequestDto);
 }

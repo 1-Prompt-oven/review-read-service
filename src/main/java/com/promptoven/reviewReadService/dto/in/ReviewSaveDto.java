@@ -1,10 +1,13 @@
 package com.promptoven.reviewReadService.dto.in;
 
 import com.promptoven.reviewReadService.document.ReviewReadDocument;
+import com.promptoven.reviewReadService.global.common.response.BaseResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @Getter
 @NoArgsConstructor
 public class ReviewSaveDto {
@@ -27,13 +30,13 @@ public class ReviewSaveDto {
         this.memberNickname = memberNickname;
     }
 
-    public static ReviewSaveDto toSaveDto(RequestMessageDto message, MemberProfileDto memberProfileDto) {
+    public static ReviewSaveDto toSaveDto(RequestMessageDto message, BaseResponse<MemberProfileDto> memberProfileDto) {
         return ReviewSaveDto.builder()
                 .productUuid(message.getProductUuid())
                 .memberUuid(message.getMemberUuid())
                 .contents(message.getContents())
-                .memberNickname(memberProfileDto.getMemberNickname())
-                .memberProfileImage(memberProfileDto.getMemberProfileImage())
+                .memberNickname(memberProfileDto.result().getMemberNickname())
+                .memberProfileImage(memberProfileDto.result().getMemberProfileImage())
                 .build();
     }
 

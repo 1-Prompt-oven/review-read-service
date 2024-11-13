@@ -12,13 +12,13 @@ public class ReviewOutPaginationDto {
     private List<ReviewResponseDto> reviewResponseDtoList;
     private LocalDateTime lastCreatedAt;
     private Boolean hasNext;
-    private Long lastId;
+    private String lastId;
     private Integer pageSize;
     private Integer page;
 
     @Builder
     public ReviewOutPaginationDto(List<ReviewResponseDto> reviewResponseDtoList, LocalDateTime lastCreatedAt, Boolean hasNext,
-            Long lastId, Integer pageSize, Integer page) {
+            String lastId, Integer pageSize, Integer page) {
         this.reviewResponseDtoList = reviewResponseDtoList;
         this.lastCreatedAt = lastCreatedAt;
         this.hasNext = hasNext;

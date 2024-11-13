@@ -33,18 +33,31 @@ public class ReviewResponseDto {
         this.updatedAt = updatedAt;
     }
 
-    public static List<ReviewResponseDto> toDtoList(List<ReviewReadDocument> reviewReadDocumentList) {
-        return reviewReadDocumentList.stream()
-                .map(document -> ReviewResponseDto.builder()
-                        .id(document.getId())
-                        .productUuid(document.getProductUuid())
-                        .contents(document.getContents())
-                        .memberUuid(document.getMemberUuid())
-                        .memberProfileImage(document.getMemberProfileImage())
-                        .memberNickname(document.getMemberNickname())
-                        .createdAt(document.getCreatedAt())
-                        .updatedAt(document.getUpdatedAt())
-                        .build())
-                .toList();
+//    public static List<ReviewResponseDto> toDtoList(List<ReviewReadDocument> reviewReadDocumentList) {
+//        return reviewReadDocumentList.stream()
+//                .map(document -> ReviewResponseDto.builder()
+//                        .id(document.getId())
+//                        .productUuid(document.getProductUuid())
+//                        .contents(document.getContents())
+//                        .memberUuid(document.getMemberUuid())
+//                        .memberProfileImage(document.getMemberProfileImage())
+//                        .memberNickname(document.getMemberNickname())
+//                        .createdAt(document.getCreatedAt())
+//                        .updatedAt(document.getUpdatedAt())
+//                        .build())
+//                .toList();
+//    }
+
+    public static ReviewResponseDto toDto(ReviewReadDocument reviewReadDocument) {
+        return ReviewResponseDto.builder()
+                .id(reviewReadDocument.getId())
+                .productUuid(reviewReadDocument.getProductUuid())
+                .contents(reviewReadDocument.getContents())
+                .memberUuid(reviewReadDocument.getMemberUuid())
+                .memberProfileImage(reviewReadDocument.getMemberProfileImage())
+                .memberNickname(reviewReadDocument.getMemberNickname())
+                .createdAt(reviewReadDocument.getCreatedAt())
+                .updatedAt(reviewReadDocument.getUpdatedAt())
+                .build();
     }
 }

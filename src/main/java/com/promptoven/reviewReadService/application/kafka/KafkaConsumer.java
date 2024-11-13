@@ -4,6 +4,7 @@ import com.promptoven.reviewReadService.application.feign.MemberServiceClient;
 import com.promptoven.reviewReadService.dto.in.MemberProfileDto;
 import com.promptoven.reviewReadService.dto.in.RequestMessageDto;
 import com.promptoven.reviewReadService.dto.in.ReviewSaveDto;
+import com.promptoven.reviewReadService.global.common.response.BaseResponse;
 import com.promptoven.reviewReadService.infrastructure.MongoReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,14 +25,16 @@ public class KafkaConsumer {
     @KafkaListener(topics = CREATE_TOPIC, groupId = GROUP_ID)
     public void consumeCreate(RequestMessageDto message) {
 
-//        log.info("Consumed message: {}", message);
+        log.info("Consumed message: {}", message);
 
-        MemberProfileDto memberProfileDto = memberServiceClient.getMemberProfile();
+        BaseResponse<MemberProfileDto> memberProfileDto = memberServiceClient.getMemberProfile();
 
-//        log.info("Consumed memberProfileDto: {}", memberProfileDto);
+        log.info("Consumed memberProfileDto: {}", memberProfileDto);
 
         ReviewSaveDto reviewSaveDto = ReviewSaveDto.toSaveDto(message, memberProfileDto);
 
+        log.info("Consumed reviewSaveDto: {}", reviewSaveDto);
+
         mongoReviewRepository.save(reviewSaveDto.toDocument(reviewSaveDto));
-    }
+    } // 클러스터 변경
 }
