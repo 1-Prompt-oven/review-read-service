@@ -13,13 +13,11 @@ public class RequestMessageDto {
     private String productUuid;
     private String contents;
     private String memberUuid;
-    private Boolean isDeleted;
 
     @Builder
-    public RequestMessageDto(String productUuid, String contents, String memberUuid, Boolean isDeleted) {
+    public RequestMessageDto(String productUuid, String contents, String memberUuid) {
         this.productUuid = productUuid;
         this.contents = contents;
         this.memberUuid = memberUuid;
-        this.isDeleted = isDeleted;
     }
 }

@@ -19,14 +19,16 @@ public class ReviewReadDocument extends BaseEntity {
     private String memberUuid;
     private String memberProfileImage;
     private String memberNickname;
+    private Boolean isDeleted;
 
     @Builder
     public ReviewReadDocument(String productUuid, String contents, String memberUuid, String memberProfileImage,
-            String memberNickname) {
+            String memberNickname, Boolean isDeleted) {
         this.productUuid = productUuid;
         this.contents = contents;
         this.memberUuid = memberUuid;
         this.memberProfileImage = memberProfileImage;
         this.memberNickname = memberNickname;
+        this.isDeleted = isDeleted;
     }
 }

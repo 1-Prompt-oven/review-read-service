@@ -14,20 +14,20 @@ public class ReviewSaveDto {
 
     private String productUuid;
     private String memberUuid;
-    private int star;
     private String contents;
     private String memberProfileImage;
     private String memberNickname;
+    private Boolean isDeleted;
 
     @Builder
-    public ReviewSaveDto(String productUuid, String memberUuid, int star, String contents, String memberProfileImage,
+    public ReviewSaveDto(String productUuid, String memberUuid, String contents, String memberProfileImage,
             String memberNickname) {
         this.productUuid = productUuid;
         this.memberUuid = memberUuid;
-        this.star = star;
         this.contents = contents;
         this.memberProfileImage = memberProfileImage;
         this.memberNickname = memberNickname;
+        this.isDeleted = false;
     }
 
     public static ReviewSaveDto toSaveDto(RequestMessageDto message, BaseResponse<MemberProfileDto> memberProfileDto) {
@@ -47,6 +47,7 @@ public class ReviewSaveDto {
                 .contents(reviewSaveDto.getContents())
                 .memberProfileImage(reviewSaveDto.getMemberProfileImage())
                 .memberNickname(reviewSaveDto.getMemberNickname())
+                .isDeleted(reviewSaveDto.getIsDeleted())
                 .build();
     }
 }

@@ -40,6 +40,8 @@ public class CustomReviewRepositoryImpl implements MongoCustomReviewRepositoryIm
             query.addCriteria(Criteria.where("productUuid").is(productUuid));
         }
 
+        query.addCriteria(Criteria.where("isDeleted").is(false));
+
         // 페이징 커서 설정
         if (lastCreatedAt != null && lastId != null) {
             query.addCriteria(new Criteria().orOperator(
@@ -78,7 +80,7 @@ public class CustomReviewRepositoryImpl implements MongoCustomReviewRepositoryIm
                 .hasNext(hasNext)
                 .lastCreatedAt(nextCreatedAt)
                 .lastId(nextReviewId)
-                .page(page)
+                .page(page+1)
                 .pageSize(pageSize)
                 .build();
     }
