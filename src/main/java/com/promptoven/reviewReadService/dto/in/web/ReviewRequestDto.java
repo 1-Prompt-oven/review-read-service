@@ -1,4 +1,4 @@
-package com.promptoven.reviewReadService.dto.in;
+package com.promptoven.reviewReadService.dto.in.web;
 
 import java.time.LocalDateTime;
 import lombok.Builder;

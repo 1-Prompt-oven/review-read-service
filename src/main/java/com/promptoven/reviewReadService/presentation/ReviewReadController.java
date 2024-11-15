@@ -1,7 +1,7 @@
 package com.promptoven.reviewReadService.presentation;
 
 import com.promptoven.reviewReadService.application.readService.ReviewReadService;
-import com.promptoven.reviewReadService.dto.in.ReviewRequestDto;
+import com.promptoven.reviewReadService.dto.in.web.ReviewRequestDto;
 import com.promptoven.reviewReadService.dto.out.ReviewOutPaginationDto;
 import com.promptoven.reviewReadService.global.common.utils.CursorPage;
 import com.promptoven.reviewReadService.vo.out.ReadResponseVo;
