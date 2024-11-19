@@ -1,6 +1,5 @@
-package com.promptoven.reviewReadService.dto.in.Message;
+package com.promptoven.reviewReadService.dto.in.message;
 
-import com.promptoven.reviewReadService.document.ReviewReadDocument;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

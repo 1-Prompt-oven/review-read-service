@@ -1,4 +1,4 @@
-package com.promptoven.reviewReadService.dto.in.Message;
+package com.promptoven.reviewReadService.dto.in.message;
 
 import lombok.Builder;
 import lombok.Getter;

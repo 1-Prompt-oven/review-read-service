@@ -18,7 +18,4 @@ public abstract class BaseEntity {
     @Field("updated_at")
     protected LocalDateTime updatedAt;
 
-    @Version
-    protected Integer version;
-
 }

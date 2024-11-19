@@ -1,9 +1,9 @@
 package com.promptoven.reviewReadService.application.kafka;
 
 import com.promptoven.reviewReadService.document.ReviewReadDocument;
-import com.promptoven.reviewReadService.dto.in.Message.CreateRequestMessageDto;
-import com.promptoven.reviewReadService.dto.in.Message.DeleteRequestMessageDto;
-import com.promptoven.reviewReadService.dto.in.Message.UpdateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.CreateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.DeleteRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.UpdateRequestMessageDto;
 import com.promptoven.reviewReadService.dto.in.ReviewSaveDto;
 import com.promptoven.reviewReadService.infrastructure.MongoReviewRepository;
 import lombok.RequiredArgsConstructor;

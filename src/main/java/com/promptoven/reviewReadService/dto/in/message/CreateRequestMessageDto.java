@@ -1,4 +1,4 @@
-package com.promptoven.reviewReadService.dto.in.Message;
+package com.promptoven.reviewReadService.dto.in.message;
 
 import com.promptoven.reviewReadService.document.ReviewReadDocument;
 import lombok.Builder;
@@ -15,19 +15,19 @@ public class CreateRequestMessageDto {
     private String productUuid;
     private String contents;
     private int star;
-    private String memberUuid;
     private String memberProfileImage;
+    private String memberUuid;
     private String memberNickname;
 
     @Builder
     public CreateRequestMessageDto(Long reviewId, String productUuid, String contents, int star, String memberUuid,
-            String memberProfileImage, String memberNickname) {
+            String memberProfileImage,String memberNickname) {
         this.reviewId = reviewId;
         this.productUuid = productUuid;
         this.contents = contents;
         this.star = star;
-        this.memberUuid = memberUuid;
         this.memberProfileImage = memberProfileImage;
+        this.memberUuid = memberUuid;
         this.memberNickname = memberNickname;
     }
 
@@ -40,6 +40,7 @@ public class CreateRequestMessageDto {
                 .memberUuid(createRequestMessageDto.getMemberUuid())
                 .memberProfileImage(createRequestMessageDto.getMemberProfileImage())
                 .memberNickname(createRequestMessageDto.getMemberNickname())
+                .isDeleted(false)
                 .build();
     }
 }

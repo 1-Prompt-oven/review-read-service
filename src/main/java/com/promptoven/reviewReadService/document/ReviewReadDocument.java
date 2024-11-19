@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @NoArgsConstructor
 @Document(collection = "reviews")
-public class ReviewReadDocument {
+public class ReviewReadDocument extends BaseEntity {
 
     @Id
     private String id;
@@ -23,8 +23,6 @@ public class ReviewReadDocument {
     private String memberProfileImage;
     private String memberNickname;
     private Boolean isDeleted;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
 
     @Builder

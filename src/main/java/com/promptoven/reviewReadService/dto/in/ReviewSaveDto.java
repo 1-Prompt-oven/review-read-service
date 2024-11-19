@@ -1,8 +1,7 @@
 package com.promptoven.reviewReadService.dto.in;
 
 import com.promptoven.reviewReadService.document.ReviewReadDocument;
-import com.promptoven.reviewReadService.dto.in.Message.CreateRequestMessageDto;
-import com.promptoven.reviewReadService.dto.in.Message.UpdateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.UpdateRequestMessageDto;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
