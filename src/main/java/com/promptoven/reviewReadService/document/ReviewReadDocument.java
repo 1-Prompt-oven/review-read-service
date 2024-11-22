@@ -26,7 +26,8 @@ public class ReviewReadDocument extends BaseEntity {
 
 
     @Builder
-    public ReviewReadDocument(String id, Long reviewId, String productUuid, String contents, int star, String authorUuid, String authorProfileImage,
+    public ReviewReadDocument(String id, Long reviewId, String productUuid, String contents, int star,
+            String authorUuid, String authorProfileImage,
             String authorNickname, Boolean isDeleted, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.reviewId = reviewId;

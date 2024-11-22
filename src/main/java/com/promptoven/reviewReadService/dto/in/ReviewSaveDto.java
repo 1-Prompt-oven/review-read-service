@@ -3,7 +3,6 @@ package com.promptoven.reviewReadService.dto.in;
 import com.promptoven.reviewReadService.document.ReviewReadDocument;
 import com.promptoven.reviewReadService.dto.in.message.UpdateRequestMessageDto;
 import java.time.LocalDateTime;
-import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +37,8 @@ public class ReviewSaveDto {
         this.isDeleted = false;
     }
 
-    public static ReviewReadDocument toUpdateDocument(ReviewReadDocument reviewReadDocument, UpdateRequestMessageDto message) {
+    public static ReviewReadDocument toUpdateDocument(ReviewReadDocument reviewReadDocument,
+            UpdateRequestMessageDto message) {
         return ReviewReadDocument.builder()
                 .id(reviewReadDocument.getId())
                 .reviewId(reviewReadDocument.getReviewId())

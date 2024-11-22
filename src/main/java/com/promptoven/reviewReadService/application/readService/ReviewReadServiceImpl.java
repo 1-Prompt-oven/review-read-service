@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewReadServiceImpl implements ReviewReadService{
+public class ReviewReadServiceImpl implements ReviewReadService {
 
     private final MongoCustomReviewRepositoryImpl mongoCustomReviewRepositoryImpl;
 

@@ -80,7 +80,7 @@ public class CustomReviewRepositoryImpl implements MongoCustomReviewRepositoryIm
                 .hasNext(hasNext)
                 .lastCreatedAt(nextCreatedAt)
                 .lastId(nextReviewId)
-                .page(page+1)
+                .page(page + 1)
                 .pageSize(pageSize)
                 .build();
     }

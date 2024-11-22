@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface MongoReviewRepository extends MongoRepository<ReviewReadDocument, String> {
 
     Optional<ReviewReadDocument> findByReviewId(Long reviewId);
+
     List<ReviewReadDocument> findByAuthorUuid(String authorUuid);
 }

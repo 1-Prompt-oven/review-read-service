@@ -22,8 +22,8 @@ public class ReadResponseVo {
     private LocalDateTime updatedAt;
 
     @Builder
-    public ReadResponseVo(String id, String productUuid, String contents, int star, String authorUuid, String authorProfileImage,
-            String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ReadResponseVo(String id, String productUuid, String contents, int star, String authorUuid,
+            String authorProfileImage, String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.productUuid = productUuid;
         this.contents = contents;

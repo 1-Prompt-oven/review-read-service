@@ -4,9 +4,7 @@ import com.promptoven.reviewReadService.document.ReviewReadDocument;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@ToString
 @Getter
 @NoArgsConstructor
 public class CreateRequestMessageDto {

@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MongoCustomReviewRepositoryImpl {
+
     ReviewOutPaginationDto getReviewListByUserUuid(ReviewRequestDto reviewRequestDto);
 }

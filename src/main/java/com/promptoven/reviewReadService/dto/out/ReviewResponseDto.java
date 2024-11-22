@@ -21,7 +21,8 @@ public class ReviewResponseDto {
     private LocalDateTime updatedAt;
 
     @Builder
-    public ReviewResponseDto(String id, String productUuid, String contents, int star, String authorUuid, String authorProfileImage,
+    public ReviewResponseDto(String id, String productUuid, String contents, int star, String authorUuid,
+            String authorProfileImage,
             String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.productUuid = productUuid;

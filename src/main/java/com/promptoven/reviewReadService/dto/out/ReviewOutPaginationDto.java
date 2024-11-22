@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ReviewOutPaginationDto {
+
     private List<ReviewResponseDto> reviewResponseDtoList;
     private LocalDateTime lastCreatedAt;
     private Boolean hasNext;
@@ -17,7 +18,8 @@ public class ReviewOutPaginationDto {
     private Integer page;
 
     @Builder
-    public ReviewOutPaginationDto(List<ReviewResponseDto> reviewResponseDtoList, LocalDateTime lastCreatedAt, Boolean hasNext,
+    public ReviewOutPaginationDto(List<ReviewResponseDto> reviewResponseDtoList, LocalDateTime lastCreatedAt,
+            Boolean hasNext,
             String lastId, Integer pageSize, Integer page) {
         this.reviewResponseDtoList = reviewResponseDtoList;
         this.lastCreatedAt = lastCreatedAt;
