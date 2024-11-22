@@ -15,20 +15,20 @@ public class CreateRequestMessageDto {
     private String productUuid;
     private String contents;
     private int star;
-    private String memberProfileImage;
-    private String memberUuid;
-    private String memberNickname;
+    private String authorProfileImage;
+    private String authorUuid;
+    private String authorNickname;
 
     @Builder
-    public CreateRequestMessageDto(Long reviewId, String productUuid, String contents, int star, String memberUuid,
-            String memberProfileImage,String memberNickname) {
+    public CreateRequestMessageDto(Long reviewId, String productUuid, String authorUuid, String authorProfileImage,
+            String authorNickname, String contents, int star) {
         this.reviewId = reviewId;
         this.productUuid = productUuid;
+        this.authorUuid = authorUuid;
+        this.authorProfileImage = authorProfileImage;
+        this.authorNickname = authorNickname;
         this.contents = contents;
         this.star = star;
-        this.memberProfileImage = memberProfileImage;
-        this.memberUuid = memberUuid;
-        this.memberNickname = memberNickname;
     }
 
     public static ReviewReadDocument toCreateDocument(CreateRequestMessageDto createRequestMessageDto) {
@@ -37,9 +37,9 @@ public class CreateRequestMessageDto {
                 .productUuid(createRequestMessageDto.getProductUuid())
                 .contents(createRequestMessageDto.getContents())
                 .star(createRequestMessageDto.getStar())
-                .memberUuid(createRequestMessageDto.getMemberUuid())
-                .memberProfileImage(createRequestMessageDto.getMemberProfileImage())
-                .memberNickname(createRequestMessageDto.getMemberNickname())
+                .authorUuid(createRequestMessageDto.getAuthorUuid())
+                .authorProfileImage(createRequestMessageDto.getAuthorProfileImage())
+                .authorNickname(createRequestMessageDto.getAuthorNickname())
                 .isDeleted(false)
                 .build();
     }

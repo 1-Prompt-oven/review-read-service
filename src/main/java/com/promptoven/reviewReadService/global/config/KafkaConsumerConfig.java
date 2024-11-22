@@ -2,6 +2,8 @@ package com.promptoven.reviewReadService.global.config;
 
 import com.promptoven.reviewReadService.dto.in.message.CreateRequestMessageDto;
 import com.promptoven.reviewReadService.dto.in.message.DeleteRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.ImgUpdateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.NicknameUpdateRequestMessageDto;
 import com.promptoven.reviewReadService.dto.in.message.UpdateRequestMessageDto;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +56,16 @@ public class KafkaConsumerConfig {
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, DeleteRequestMessageDto> deleteKafkaListenerContainerFactory() {
         return kafkaListenerContainerFactory(DeleteRequestMessageDto.class);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, NicknameUpdateRequestMessageDto> nicknameUpdateKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(NicknameUpdateRequestMessageDto.class);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, ImgUpdateRequestMessageDto> profileImgUpdateKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(ImgUpdateRequestMessageDto.class);
     }
 
 }

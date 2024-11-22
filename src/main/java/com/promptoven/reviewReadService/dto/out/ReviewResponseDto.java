@@ -2,7 +2,6 @@ package com.promptoven.reviewReadService.dto.out;
 
 import com.promptoven.reviewReadService.document.ReviewReadDocument;
 import java.time.LocalDateTime;
-import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,22 +14,22 @@ public class ReviewResponseDto {
     private String productUuid;
     private String contents;
     private int star;
-    private String memberUuid;
-    private String memberProfileImage;
-    private String memberNickname;
+    private String authorUuid;
+    private String authorProfileImage;
+    private String authorNickname;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     @Builder
-    public ReviewResponseDto(String id, String productUuid, String contents, int star, String memberUuid, String memberProfileImage,
-            String memberNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ReviewResponseDto(String id, String productUuid, String contents, int star, String authorUuid, String authorProfileImage,
+            String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.productUuid = productUuid;
         this.contents = contents;
         this.star = star;
-        this.memberUuid = memberUuid;
-        this.memberProfileImage = memberProfileImage;
-        this.memberNickname = memberNickname;
+        this.authorUuid = authorUuid;
+        this.authorProfileImage = authorProfileImage;
+        this.authorNickname = authorNickname;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -41,9 +40,9 @@ public class ReviewResponseDto {
                 .productUuid(reviewReadDocument.getProductUuid())
                 .contents(reviewReadDocument.getContents())
                 .star(reviewReadDocument.getStar())
-                .memberUuid(reviewReadDocument.getMemberUuid())
-                .memberProfileImage(reviewReadDocument.getMemberProfileImage())
-                .memberNickname(reviewReadDocument.getMemberNickname())
+                .authorUuid(reviewReadDocument.getAuthorUuid())
+                .authorProfileImage(reviewReadDocument.getAuthorProfileImage())
+                .authorNickname(reviewReadDocument.getAuthorNickname())
                 .createdAt(reviewReadDocument.getCreatedAt())
                 .updatedAt(reviewReadDocument.getUpdatedAt())
                 .build();

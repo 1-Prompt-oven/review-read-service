@@ -3,6 +3,7 @@ package com.promptoven.reviewReadService.presentation;
 import com.promptoven.reviewReadService.application.readService.ReviewReadService;
 import com.promptoven.reviewReadService.dto.in.web.ReviewRequestDto;
 import com.promptoven.reviewReadService.dto.out.ReviewOutPaginationDto;
+import com.promptoven.reviewReadService.global.common.response.BaseResponse;
 import com.promptoven.reviewReadService.global.common.utils.CursorPage;
 import com.promptoven.reviewReadService.vo.out.ReadResponseVo;
 import java.time.LocalDateTime;
@@ -13,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/readReviews")
+@RequestMapping("/v1/member/review")
 @RequiredArgsConstructor
 public class ReviewReadController {
 
     private final ReviewReadService reviewReadService;
 
     @GetMapping
-    public CursorPage<ReadResponseVo> getReviews(@RequestParam String productUuid,
+    public BaseResponse<CursorPage<ReadResponseVo>> getReviews(@RequestParam String productUuid,
             @RequestParam(required = false) LocalDateTime lastCreatedAt,
             @RequestParam(required = false) String lastId, @RequestParam(required = false) Integer pageSize,
             @RequestParam(required = false) Integer page) {
@@ -30,6 +31,6 @@ public class ReviewReadController {
 
         ReviewOutPaginationDto reviewOutPaginationDto = reviewReadService.getReviews(reviewRequestDto);
 
-        return CursorPage.toCursorPage(reviewOutPaginationDto);
+        return new BaseResponse<>(CursorPage.toCursorPage(reviewOutPaginationDto));
     }
 }
