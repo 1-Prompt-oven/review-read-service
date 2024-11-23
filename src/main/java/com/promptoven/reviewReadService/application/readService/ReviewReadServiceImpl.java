@@ -1,26 +1,19 @@
 package com.promptoven.reviewReadService.application.readService;
 
-import com.promptoven.reviewReadService.document.ReviewReadDocument;
-import com.promptoven.reviewReadService.dto.out.ReviewResponseDto;
-import com.promptoven.reviewReadService.infrastructure.MongoReviewRepository;
-import java.util.List;
+import com.promptoven.reviewReadService.dto.in.web.ReviewRequestDto;
+import com.promptoven.reviewReadService.dto.out.ReviewOutPaginationDto;
+import com.promptoven.reviewReadService.infrastructure.MongoCustomReviewRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewReadServiceImpl implements ReviewReadService{
+public class ReviewReadServiceImpl implements ReviewReadService {
 
-    private final MongoReviewRepository mongoReviewRepository;
-
-    @Override
-    public void testRequest() {
-        mongoReviewRepository.save(new ReviewReadDocument("1", "1", "1", "1", "1"));
-    }
+    private final MongoCustomReviewRepositoryImpl mongoCustomReviewRepositoryImpl;
 
     @Override
-    public List<ReviewResponseDto> getReviews(String productUuid) {
-        List<ReviewReadDocument> reviewReadDocumentList = mongoReviewRepository.findByProductUuid(productUuid);
-        return ReviewResponseDto.toDtoList(reviewReadDocumentList);
+    public ReviewOutPaginationDto getReviews(ReviewRequestDto reviewRequestDto) {
+        return mongoCustomReviewRepositoryImpl.getReviewListByUserUuid(reviewRequestDto);
     }
 }

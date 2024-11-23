@@ -14,21 +14,23 @@ public class ReadResponseVo {
     private String id;
     private String productUuid;
     private String contents;
-    private String memberUuid;
-    private String memberProfileImage;
-    private String memberNickname;
+    private int star;
+    private String authorUuid;
+    private String authorProfileImage;
+    private String authorNickname;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     @Builder
-    public ReadResponseVo(String id, String productUuid, String contents, String memberUuid, String memberProfileImage,
-            String memberNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ReadResponseVo(String id, String productUuid, String contents, int star, String authorUuid,
+            String authorProfileImage, String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.productUuid = productUuid;
         this.contents = contents;
-        this.memberUuid = memberUuid;
-        this.memberProfileImage = memberProfileImage;
-        this.memberNickname = memberNickname;
+        this.star = star;
+        this.authorUuid = authorUuid;
+        this.authorProfileImage = authorProfileImage;
+        this.authorNickname = authorNickname;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -39,9 +41,10 @@ public class ReadResponseVo {
                         .id(dto.getId())
                         .productUuid(dto.getProductUuid())
                         .contents(dto.getContents())
-                        .memberUuid(dto.getMemberUuid())
-                        .memberProfileImage(dto.getMemberProfileImage())
-                        .memberNickname(dto.getMemberNickname())
+                        .star(dto.getStar())
+                        .authorUuid(dto.getAuthorUuid())
+                        .authorProfileImage(dto.getAuthorProfileImage())
+                        .authorNickname(dto.getAuthorNickname())
                         .createdAt(dto.getCreatedAt())
                         .updatedAt(dto.getUpdatedAt())
                         .build())

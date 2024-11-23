@@ -5,7 +5,7 @@ import static com.promptoven.reviewReadService.global.common.response.BaseRespon
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
-public record BaseResponse<T>(HttpStatusCode httpStatus, Boolean isSuccess, String message, int code, T result) {
+public record BaseResponse<T>(HttpStatus httpStatus, Boolean isSuccess, String message, int code, T result) {
     // 필요값 : Http 상태코드, 성공여부, 메시지, 에러코드, 결과값
 
     /**
@@ -31,7 +31,7 @@ public record BaseResponse<T>(HttpStatusCode httpStatus, Boolean isSuccess, Stri
      * @param result 에러 메시지
      */
     public BaseResponse(BaseResponseStatus status, T result) {
-        this(status.getHttpStatusCode(), false, status.getMessage(), status.getCode(), result);
+        this((HttpStatus) status.getHttpStatusCode(), false, status.getMessage(), status.getCode(), result);
     }
 
     /**
@@ -40,6 +40,6 @@ public record BaseResponse<T>(HttpStatusCode httpStatus, Boolean isSuccess, Stri
      * @param status 요청 상태
      */
     public BaseResponse(BaseResponseStatus status) {
-        this(status.getHttpStatusCode(), false, status.getMessage(), status.getCode(), null);
+        this((HttpStatus) status.getHttpStatusCode(), false, status.getMessage(), status.getCode(), null);
     }
 }

@@ -1,6 +1,10 @@
 package com.promptoven.reviewReadService.global.config;
 
-import com.promptoven.reviewReadService.dto.in.RequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.CreateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.DeleteRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.ImgUpdateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.NicknameUpdateRequestMessageDto;
+import com.promptoven.reviewReadService.dto.in.message.UpdateRequestMessageDto;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -12,7 +16,6 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 @Configuration
@@ -22,31 +25,47 @@ public class KafkaConsumerConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
-    @Bean
-    public ConsumerFactory<String, RequestMessageDto> consumerFactory() {
+    private <T> ConsumerFactory<String, T> consumerFactory(Class<T> targetType) {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "kafka-review-service");
-
-        // ErrorHandlingDeserializer 설정
-        configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-        configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-
-        // ErrorHandlingDeserializer에 사용할 실제 디시리얼라이저 설정
-        configProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class.getName());
-        configProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class.getName());
-
-        // JsonDeserializer 기본 설정
-        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, RequestMessageDto.class.getName());
+        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "kafka-review-read-service");
+        configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, targetType.getName());
         configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
 
         return new DefaultKafkaConsumerFactory<>(configProps);
     }
 
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, RequestMessageDto> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, RequestMessageDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
+    private <T> ConcurrentKafkaListenerContainerFactory<String, T> kafkaListenerContainerFactory(Class<T> targetType) {
+        ConcurrentKafkaListenerContainerFactory<String, T> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory(targetType));
         return factory;
     }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, CreateRequestMessageDto> createKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(CreateRequestMessageDto.class);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, UpdateRequestMessageDto> updateKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(UpdateRequestMessageDto.class);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, DeleteRequestMessageDto> deleteKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(DeleteRequestMessageDto.class);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, NicknameUpdateRequestMessageDto> nicknameUpdateKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(NicknameUpdateRequestMessageDto.class);
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, ImgUpdateRequestMessageDto> profileImgUpdateKafkaListenerContainerFactory() {
+        return kafkaListenerContainerFactory(ImgUpdateRequestMessageDto.class);
+    }
+
 }
