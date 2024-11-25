@@ -6,6 +6,7 @@ import com.promptoven.reviewReadService.dto.out.ReviewOutPaginationDto;
 import com.promptoven.reviewReadService.global.common.response.BaseResponse;
 import com.promptoven.reviewReadService.global.common.utils.CursorPage;
 import com.promptoven.reviewReadService.vo.out.ReadResponseVo;
+import io.swagger.v3.oas.annotations.Operation;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReviewReadController {
 
     private final ReviewReadService reviewReadService;
-
+    
+    @Operation(summary = "리뷰 조회 API", tags = {"리뷰"})
     @GetMapping
     public BaseResponse<CursorPage<ReadResponseVo>> getReviews(@RequestParam String productUuid,
             @RequestParam(required = false) LocalDateTime lastCreatedAt,
