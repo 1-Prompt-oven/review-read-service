@@ -1,4 +1,4 @@
-# 배포 깃액션
+# 배포 깃액션 mkdir 추가
 name: CI/CD
 on:
   push:
