@@ -14,6 +14,7 @@ import com.promptoven.reviewReadService.infrastructure.MongoReviewRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -22,20 +23,15 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumer {
 
     private final MongoReviewRepository mongoReviewRepository;
-    private static final String CREATE_TOPIC = "create_review_event"; // 각각 이벤트의 발행
-    private static final String UPDATE_TOPIC = "update_review_event";
-    private static final String DELETE_TOPIC = "delete_review_event";
-    private static final String NICKNAME_UPDATE_TOPIC = "member-nickname-updated";
-    private static final String PROFILE_IMG_UPDATE_TOPIC = "profile-picture-updated";
     private static final String GROUP_ID = "kafka-review-read-service";
 
-    @KafkaListener(topics = CREATE_TOPIC, groupId = GROUP_ID, containerFactory = "createKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${review-create-event}", groupId = GROUP_ID, containerFactory = "createKafkaListenerContainerFactory")
     public void consumeCreate(CreateRequestMessageDto message) {
 
         mongoReviewRepository.save(CreateRequestMessageDto.toCreateDocument(message));
     }
 
-    @KafkaListener(topics = UPDATE_TOPIC, groupId = GROUP_ID, containerFactory = "updateKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${review-update-event}", groupId = GROUP_ID, containerFactory = "updateKafkaListenerContainerFactory")
     public void consumeUpdate(UpdateRequestMessageDto message) {
 
         ReviewReadDocument reviewReadDocument = mongoReviewRepository.findByReviewId(message.getReviewId())
@@ -45,7 +41,7 @@ public class KafkaConsumer {
 
     }
 
-    @KafkaListener(topics = DELETE_TOPIC, groupId = GROUP_ID, containerFactory = "deleteKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${review-delete-event}", groupId = GROUP_ID, containerFactory = "deleteKafkaListenerContainerFactory")
     public void consumeDelete(DeleteRequestMessageDto message) {
 
         ReviewReadDocument reviewReadDocument = mongoReviewRepository.findByReviewId(message.getReviewId())
@@ -54,7 +50,7 @@ public class KafkaConsumer {
         mongoReviewRepository.save(ReviewSaveDto.toDeleteDocument(reviewReadDocument));
     }
 
-    @KafkaListener(topics = NICKNAME_UPDATE_TOPIC, groupId = GROUP_ID, containerFactory = "nicknameUpdateKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${member-nickname-update-event}", groupId = GROUP_ID, containerFactory = "nicknameUpdateKafkaListenerContainerFactory")
     public void consumeNicknameUpdate(NicknameUpdateRequestMessageDto message) {
 
         List<ReviewReadDocument> reviewReadDocumentList = mongoReviewRepository.findByAuthorUuid(
@@ -63,7 +59,7 @@ public class KafkaConsumer {
         mongoReviewRepository.saveAll(updateReviewField(reviewReadDocumentList, message.getNickname(), "nickname"));
     }
 
-    @KafkaListener(topics = PROFILE_IMG_UPDATE_TOPIC, groupId = GROUP_ID, containerFactory = "profileImgUpdateKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${profile-picture-update-event}", groupId = GROUP_ID, containerFactory = "profileImgUpdateKafkaListenerContainerFactory")
     public void consumeProfileImgUpdate(ImgUpdateRequestMessageDto message) {
         List<ReviewReadDocument> reviewReadDocumentList = mongoReviewRepository.findByAuthorUuid(
                 message.getMemberUUID());
