@@ -1,8 +1,9 @@
 spring:
   application:
     name: review-read-service
-  profiles:
-    active: local
+  data:
+    mongodb:
+      uri: mongodb://root:1234@mongodb:27017/reviewDB?directConnection=true
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:39092,localhost:49092}
     consumer:
@@ -20,12 +21,10 @@ springdoc:
 
 logging:
   level:
-    com.promptoven.reviewReadService: DEBUG
+    org.example.product_admin_service: DEBUG
 
 server:
   shutdown: graceful
-
-
 
 # local 설정
 ---
@@ -33,14 +32,14 @@ server:
   port: 0
 
 spring:
-  data:
-    mongodb:
-      uri: mongodb://root:1234@15.164.251.81:27017/reviewDB?directConnection=true
+  application:
+    name: review-read-service
   config:
     import:
       - classpath:eventTopic.yaml
-  application:
-    name: review-read-service
+  data:
+    mongodb:
+      uri: mongodb://root:1234@15.164.251.81:27017/reviewDB?directConnection=true
   kafka:
     text-bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:39092,localhost:49092}
     consumer:
@@ -72,8 +71,7 @@ spring:
       dialect: org.hibernate.dialect.MySQLDialect
   data:
     mongodb:
-      uri: mongodb://root:1234@15.164.251.81:27017/reviewDB?directConnection=true
-      auto-index-creation: false  # prod 환경에서는 자동 인덱스 생성 비활성화 권장
+      uri: mongodb://root:1234@mongodb:27017/reviewDB?directConnection=true
   kafka:
     text-bootstrap-servers: kafka-1:9092,kafka-2:9092,kafka-3:9092
   cloud:
