@@ -23,7 +23,7 @@ springdoc:
 
 logging:
   level:
-    org.example.product_admin_service: DEBUG
+    com.promptoven.reviewReadService: DEBUG
 
 server:
   shutdown: graceful
@@ -43,7 +43,7 @@ spring:
     name: review-read-service
   data:
     mongodb:
-      uri: mongodb://localhost:27018/reviewDB?directConnection=true
+      uri: mongodb://localhost:27019/reviewDB?directConnection=true
   kafka:
     text-bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:39092,localhost:49092}
     consumer:

@@ -14,10 +14,12 @@ import com.promptoven.reviewReadService.infrastructure.MongoReviewRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class KafkaConsumer {
@@ -27,6 +29,8 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "${review-create-event}", groupId = GROUP_ID, containerFactory = "createKafkaListenerContainerFactory")
     public void consumeCreate(CreateRequestMessageDto message) {
+
+        log.info("Consumed message: {}", message);
 
         mongoReviewRepository.save(CreateRequestMessageDto.toCreateDocument(message));
     }
