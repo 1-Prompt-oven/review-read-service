@@ -1,6 +1,5 @@
 package com.promptoven.reviewReadService.application.readService;
 
-import com.promptoven.reviewReadService.document.ReviewReadDocument;
 import com.promptoven.reviewReadService.dto.in.web.ReviewRequestDto;
 import com.promptoven.reviewReadService.dto.out.ReviewOutPaginationDto;
 import com.promptoven.reviewReadService.infrastructure.MongoCustomReviewRepositoryImpl;

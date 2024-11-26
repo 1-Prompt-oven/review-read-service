@@ -6,7 +6,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @EnableMongoAuditing
-@EnableFeignClients
 @SpringBootApplication
 public class ReviewReadServiceApplication {
 

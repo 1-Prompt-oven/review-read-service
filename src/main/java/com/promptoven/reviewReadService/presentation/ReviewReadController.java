@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/member/reviews")
+@RequestMapping("/v1/member/review-read")
 @RequiredArgsConstructor
 public class ReviewReadController {
 
