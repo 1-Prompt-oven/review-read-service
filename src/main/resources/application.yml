@@ -3,9 +3,6 @@ spring:
     name: review-read-service
   profiles:
     active: local
-  data:
-    mongodb:
-      uri: mongodb://root:1234@15.164.251.81:27017/reviewDB?directConnection=true
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:39092,localhost:49092}
     consumer:
@@ -36,6 +33,9 @@ server:
   port: 0
 
 spring:
+  data:
+    mongodb:
+      uri: mongodb://root:1234@15.164.251.81:27017/reviewDB?directConnection=true
   config:
     import:
       - classpath:eventTopic.yaml
