@@ -41,9 +41,6 @@ spring:
       - classpath:eventTopic.yaml
   application:
     name: review-read-service
-  data:
-    mongodb:
-      uri: mongodb://localhost:27019/reviewDB?directConnection=true
   kafka:
     text-bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:39092,localhost:49092}
     consumer:
