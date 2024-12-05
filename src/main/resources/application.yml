@@ -39,7 +39,8 @@ spring:
       - classpath:eventTopic.yaml
   data:
     mongodb:
-      uri: mongodb+srv://1630202:minjihun@promptoven.5ld4d.mongodb.net/promptoven?retryWrites=true&w=majority&appName=promptoven
+      uri: mongodb://localhost:27017/reviewDB?directConnection=true
+#      uri: mongodb+srv://1630202:minjihun@promptoven.5ld4d.mongodb.net/promptoven?retryWrites=true&w=majority&appName=promptoven
   kafka:
     text-bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:39092,localhost:49092}
     consumer:
