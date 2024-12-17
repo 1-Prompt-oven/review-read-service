@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ReadResponseVo {
 
-    private String id;
+    private Long id;
     private String productUuid;
     private String contents;
     private int star;
@@ -22,7 +22,7 @@ public class ReadResponseVo {
     private LocalDateTime updatedAt;
 
     @Builder
-    public ReadResponseVo(String id, String productUuid, String contents, int star, String authorUuid,
+    public ReadResponseVo(Long id, String productUuid, String contents, int star, String authorUuid,
             String authorProfileImage, String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.productUuid = productUuid;
