@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReviewResponseDto {
 
-    private String id;
+    private Long id;
     private String productUuid;
     private String contents;
     private int star;
@@ -21,7 +21,7 @@ public class ReviewResponseDto {
     private LocalDateTime updatedAt;
 
     @Builder
-    public ReviewResponseDto(String id, String productUuid, String contents, int star, String authorUuid,
+    public ReviewResponseDto(Long id, String productUuid, String contents, int star, String authorUuid,
             String authorProfileImage,
             String authorNickname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
@@ -37,7 +37,7 @@ public class ReviewResponseDto {
 
     public static ReviewResponseDto toDto(ReviewReadDocument reviewReadDocument) {
         return ReviewResponseDto.builder()
-                .id(reviewReadDocument.getId())
+                .id(reviewReadDocument.getReviewId())
                 .productUuid(reviewReadDocument.getProductUuid())
                 .contents(reviewReadDocument.getContents())
                 .star(reviewReadDocument.getStar())
